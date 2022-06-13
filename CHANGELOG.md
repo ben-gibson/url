@@ -4,4 +4,6 @@
 
 ## [Unreleased]
 
-- Initial port from https://github.com/krixon/url 
+## [0.0.1]
+- Initial port from https://github.com/krixon/url
+
