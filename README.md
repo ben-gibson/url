@@ -1,6 +1,10 @@
 URL
 ===
 
+![Build](https://github.com/ben-gibson/url/workflows/Build/badge.svg)
+![Release](https://img.shields.io/github/v/release/ben-gibson/url)
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+
 A Kotlin port of the URL value object library https://github.com/krixon/url
 
 # Prerequisites
