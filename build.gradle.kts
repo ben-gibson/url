@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "uk.co.ben_gibson"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
