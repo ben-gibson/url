@@ -5,7 +5,7 @@ import java.net.URLEncoder.encode
 
 data class QueryString private constructor(private val query: String) {
     init {
-        query.matches(Regex("^([\\w\\-~&%+?\\[\\]]+(=([\\w\\-~&%+])+)+)+\$")) || throw IllegalArgumentException("Invalid query string '${query}'")
+        query.matches(Regex("^([\\w\\-~&/%+?\\[\\]]+(=([\\w\\-~&/%+])+)+)+\$")) || throw IllegalArgumentException("Invalid query string '${query}'")
     }
 
     companion object {
