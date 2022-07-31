@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.3]
 - Include sources Jar
 - Allow forward slash in query string
 
