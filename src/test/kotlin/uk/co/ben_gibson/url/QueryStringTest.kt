@@ -22,11 +22,10 @@ internal class QueryStringTest {
         )
     }
 
-    @Test
-    fun canCastToString() {
-        val query = QueryString.create("foo=bar&bar=baz");
-
-        assertThat(query.toString()).isEqualTo("foo=bar&bar=baz")
+    @ParameterizedTest
+    @ValueSource(strings = ["foo=a/b/c", "foo=bar&bar=baz"])
+    fun acceptsValidQueryStrings(value: String) {
+        assertThat(QueryString.create(value).toString()).isEqualTo(value)
     }
 
     @ParameterizedTest

@@ -6,8 +6,12 @@ plugins {
     id("maven-publish")
 }
 
+java {
+    withSourcesJar()
+}
+
 group = "uk.co.ben_gibson"
-version = "0.0.2"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
