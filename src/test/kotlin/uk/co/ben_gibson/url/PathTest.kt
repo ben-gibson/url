@@ -37,7 +37,7 @@ internal class PathTest {
     fun canAddParameter() {
         val path = Path.create("/foo/bar/")
 
-        assertThat(path.with("id", "some-id").toString()).isEqualTo("foo/bar/id/some-id")
-        assertThat(path.with("my slug", "some slug").toString()).isEqualTo("foo/bar/my%20slug/some%20slug")
+        assertThat(path.withParameter("id", "some-id").toString()).isEqualTo("foo/bar/id/some-id")
+        assertThat(path.withParameter("my slug", "some slug").toString()).isEqualTo("foo/bar/my%20slug/some%20slug")
     }
 }

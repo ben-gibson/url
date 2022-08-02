@@ -12,7 +12,7 @@ data class Path private constructor(private val path: String) {
 
     fun with(path: Path) = Path("${this.path}/${path}")
 
-    fun with(name: String, value: String) : Path {
+    fun withParameter(name: String, value: String) : Path {
         val encodedName = UrlEscapers.urlPathSegmentEscaper().escape(name)
         val encodedValue = UrlEscapers.urlPathSegmentEscaper().escape(value)
 
