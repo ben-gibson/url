@@ -11,7 +11,7 @@ java {
 }
 
 group = "uk.co.ben_gibson"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -24,6 +24,7 @@ changelog {
 }
 
 dependencies {
+    implementation("com.google.guava:guava:31.1-jre")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation(kotlin("test"))

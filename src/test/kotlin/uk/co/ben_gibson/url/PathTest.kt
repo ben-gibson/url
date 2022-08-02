@@ -24,4 +24,20 @@ internal class PathTest {
         assertThat(path == Path.create("foo/bar/baz")).isTrue
         assertThat(path == Path.create("foo/bar/baz/qaz")).isFalse
     }
+
+    @Test
+    fun canAddPath() {
+        val path = Path.create("/foo/bar/")
+        val other = Path.create("/baz/qaz/")
+
+        assertThat(path.with(other).toString()).isEqualTo("foo/bar/baz/qaz")
+    }
+
+    @Test
+    fun canAddParameter() {
+        val path = Path.create("/foo/bar/")
+
+        assertThat(path.with("id", "some-id").toString()).isEqualTo("foo/bar/id/some-id")
+        assertThat(path.with("my slug", "some slug").toString()).isEqualTo("foo/bar/my%20slug/some%20slug")
+    }
 }
