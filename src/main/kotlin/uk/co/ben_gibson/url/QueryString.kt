@@ -1,7 +1,7 @@
 package uk.co.ben_gibson.url
 
-import java.net.URLDecoder.decode
-import java.net.URLEncoder.encode
+import java.net.URLDecoder
+import java.net.URLEncoder
 
 data class QueryString private constructor(private val query: String) {
     init {
@@ -13,12 +13,15 @@ data class QueryString private constructor(private val query: String) {
 
         fun fromMap(parameters: Map<String, List<String>>) : QueryString {
             val queryString = parameters.entries
-                .map { it -> encode(it.key, "UTF-8") to it.value.map { encode(it, "UTF-8") } }
+                .map { it -> encode(it.key) to it.value.map { encode(it) } }
                 .flatMap { parameter -> parameter.second.map { "${parameter.first}=${it}" }}
                 .joinToString("&")
 
             return QueryString(queryString)
         }
+
+        private fun encode(value: String) = URLEncoder.encode(value, Charsets.UTF_8)
+        private fun decode(value: String) = URLDecoder.decode(value, Charsets.UTF_8)
     }
 
     fun toMap() : Map<String, List<String>> {
@@ -26,7 +29,7 @@ data class QueryString private constructor(private val query: String) {
             .map {
                 val (left, right) = it.split("=")
 
-                decode(left, "UTF-8") to decode(right, "UTF-8")
+                decode(left) to decode(right)
             }
             .groupBy({ it.first }, { it.second })
     }
@@ -36,7 +39,7 @@ data class QueryString private constructor(private val query: String) {
 
         val existingValues = parameters.getOrDefault(key, listOf())
 
-        parameters[key] = existingValues + values
+        parameters[encode(key)] = existingValues + values.map { encode(it) }
 
         return fromMap(parameters)
     }

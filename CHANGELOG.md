@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+- Add `apend` support to Path
+- Add `appendParameter` support to Path
 
 ## [0.0.3]
 - Include sources Jar
