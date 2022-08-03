@@ -8,7 +8,7 @@
 - Improve path API
 
 ## [0.0.4]
-- Add `apend` support to Path
+- Add `append` support to Path
 - Add `appendParameter` support to Path
 
 ## [0.0.3]
