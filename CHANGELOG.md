@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.7]
 - Add `Path.fromSegments()` static factory
 
 ## [0.0.6]
