@@ -3,7 +3,9 @@
 # URL Changelog
 
 ## [Unreleased]
-- Improve path API 
+
+## [0.0.5]
+- Improve path API
 
 ## [0.0.4]
 - Add `apend` support to Path
