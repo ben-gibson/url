@@ -3,6 +3,7 @@
 # URL Changelog
 
 ## [Unreleased]
+- Add `Path.fromSegments()` static factory
 
 ## [0.0.6]
 - Improve creation API

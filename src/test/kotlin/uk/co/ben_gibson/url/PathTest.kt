@@ -46,7 +46,13 @@ internal class PathTest {
         val path = Path("/foo/bar/")
 
         assertThat(path.withSegment("my slug").toString()).isEqualTo("foo/bar/my%20slug")
-        assertThat(path.withSegment("/my slug/").toString()).isEqualTo("foo/bar/my%20slug")
+    }
+
+    @Test
+    fun canBeCreatedFromSegments() {
+        val segments = listOf("baz", "awesome", "stuff 123")
+
+        assertThat(Path.fromSegments(segments).toString()).isEqualTo("baz/awesome/stuff%20123")
     }
 
     @Test
