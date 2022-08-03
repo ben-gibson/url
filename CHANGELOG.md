@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.6]
 - Improve creation API
 
 ## [0.0.5]
