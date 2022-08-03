@@ -5,7 +5,7 @@ import com.google.common.net.UrlEscapers
 data class Path private constructor(private val path: String) {
 
     companion object {
-        fun create(value: String) = Path(normalise(value))
+        operator fun invoke(value: String) = Path(normalise(value))
 
         private fun normalise(value: String) = value.trim { it.isWhitespace() || it == '/' }
     }
@@ -14,12 +14,12 @@ data class Path private constructor(private val path: String) {
 
     fun with(path: Path) = Path("${this.path}/${path}")
 
-    fun with(path: String) = with(create(path))
+    fun with(path: String) = with(Path(normalise(path)))
 
     fun withSegment(segment: String) : Path {
         val encoded = UrlEscapers.urlPathSegmentEscaper().escape(normalise(segment))
 
-        return with(create(encoded))
+        return with(Path(encoded))
     }
 
     fun withSegments(segments: List<String>) : Path =

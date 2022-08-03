@@ -7,35 +7,35 @@ internal class PathTest {
 
     @Test
     fun canCastToString() {
-        val path = Path.create("foo/bar/baz");
+        val path = Path("foo/bar/baz");
 
         assertThat(path.toString()).isEqualTo("foo/bar/baz")
     }
 
     @Test
     fun canBeNormalised() {
-        assertThat(Path.create("  /foo/bar/baz/ ").toString()).isEqualTo("foo/bar/baz")
+        assertThat(Path("  /foo/bar/baz/ ").toString()).isEqualTo("foo/bar/baz")
     }
 
     @Test
     fun canDetermineIfEqual() {
-        val path = Path.create("  /foo/bar/baz/  ")
+        val path = Path("  /foo/bar/baz/  ")
 
-        assertThat(path == Path.create("foo/bar/baz")).isTrue
-        assertThat(path == Path.create("foo/bar/baz/qaz")).isFalse
+        assertThat(path == Path("foo/bar/baz")).isTrue
+        assertThat(path == Path("foo/bar/baz/qaz")).isFalse
     }
 
     @Test
     fun canAddPath() {
-        val path = Path.create("/foo/bar/")
-        val other = Path.create("/baz/qaz/")
+        val path = Path("/foo/bar/")
+        val other = Path("/baz/qaz/")
 
         assertThat(path.with(other).toString()).isEqualTo("foo/bar/baz/qaz")
     }
 
     @Test
     fun canAddPathFromString() {
-        val path = Path.create("/foo/bar/")
+        val path = Path("/foo/bar/")
         val other = "/baz/qaz/"
 
         assertThat(path.with(other).toString()).isEqualTo("foo/bar/baz/qaz")
@@ -43,7 +43,7 @@ internal class PathTest {
 
     @Test
     fun canAddSegment() {
-        val path = Path.create("/foo/bar/")
+        val path = Path("/foo/bar/")
 
         assertThat(path.withSegment("my slug").toString()).isEqualTo("foo/bar/my%20slug")
         assertThat(path.withSegment("/my slug/").toString()).isEqualTo("foo/bar/my%20slug")
@@ -51,7 +51,7 @@ internal class PathTest {
 
     @Test
     fun canAddSegments() {
-        val path = Path.create("/foo/bar/")
+        val path = Path("/foo/bar/")
 
         assertThat(path.withSegments(listOf("baz", "awesome", "stuff 123")).toString()).isEqualTo("foo/bar/baz/awesome/stuff%20123")
     }

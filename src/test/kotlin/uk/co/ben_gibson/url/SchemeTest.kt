@@ -14,10 +14,10 @@ internal class SchemeTest {
     companion object {
         @JvmStatic
         private fun equalityExpectationsProvider() = Stream.of(
-            Arguments.of(Scheme.create("https"), Scheme.create("https"), true),
-            Arguments.of(Scheme.create("  https  "), Scheme.create("https"), true),
-            Arguments.of(Scheme.create("https"), Scheme.create("http"), false),
-            Arguments.of(Scheme.create("https"), Scheme.create("ftp"), false),
+            Arguments.of(Scheme("https"), Scheme("https"), true),
+            Arguments.of(Scheme("  https  "), Scheme("https"), true),
+            Arguments.of(Scheme("https"), Scheme("http"), false),
+            Arguments.of(Scheme("https"), Scheme("ftp"), false),
         )
     }
 
@@ -49,13 +49,13 @@ internal class SchemeTest {
 
     @Test
     fun canBeNormalised() {
-        assertThat(Scheme.create("  https ").toString()).isEqualTo("https")
+        assertThat(Scheme("  https ").toString()).isEqualTo("https")
     }
 
     @ParameterizedTest
     @ValueSource(strings = [ "1ftp" ])
     fun rejectsInvalidScheme(value: String) {
-        assertThatThrownBy { Scheme.create(value) }
+        assertThatThrownBy { Scheme(value) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("Invalid scheme '${value}'")
     }

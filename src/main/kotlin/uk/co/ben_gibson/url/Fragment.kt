@@ -7,7 +7,7 @@ data class Fragment private constructor(private val fragment: String) {
     }
 
     companion object {
-        fun create(value: String) = Fragment(value.trim().trimStart('#'))
+        operator fun invoke(value: String) = Fragment(value.trim().trimStart('#'))
     }
 
     override fun toString() = fragment

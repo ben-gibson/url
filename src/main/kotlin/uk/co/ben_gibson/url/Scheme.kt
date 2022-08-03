@@ -7,7 +7,7 @@ data class Scheme private constructor(private val scheme: String) {
     }
 
     companion object {
-        fun create(value: String) = Scheme(value.trim().lowercase())
+        operator fun invoke(value: String) = Scheme(value.trim().lowercase())
 
         fun https() = Scheme("https")
         fun http() = Scheme("http")

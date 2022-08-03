@@ -8,7 +8,7 @@ data class Host private constructor(private val host: String) {
     }
 
     companion object {
-        fun create(value: String) = Host(value.trim().trimEnd('/').lowercase())
+        operator fun invoke(value: String) = Host(value.trim().trimEnd('/').lowercase())
     }
 
     override fun toString() = host
