@@ -34,10 +34,25 @@ internal class PathTest {
     }
 
     @Test
-    fun canAddParameter() {
+    fun canAddPathFromString() {
+        val path = Path.create("/foo/bar/")
+        val other = "/baz/qaz/"
+
+        assertThat(path.with(other).toString()).isEqualTo("foo/bar/baz/qaz")
+    }
+
+    @Test
+    fun canAddSegment() {
         val path = Path.create("/foo/bar/")
 
-        assertThat(path.withParameter("id", "some-id").toString()).isEqualTo("foo/bar/id/some-id")
-        assertThat(path.withParameter("my slug", "some slug").toString()).isEqualTo("foo/bar/my%20slug/some%20slug")
+        assertThat(path.withSegment("my slug").toString()).isEqualTo("foo/bar/my%20slug")
+        assertThat(path.withSegment("/my slug/").toString()).isEqualTo("foo/bar/my%20slug")
+    }
+
+    @Test
+    fun canAddSegments() {
+        val path = Path.create("/foo/bar/")
+
+        assertThat(path.withSegments(listOf("baz", "awesome", "stuff 123")).toString()).isEqualTo("foo/bar/baz/awesome/stuff%20123")
     }
 }

@@ -15,11 +15,21 @@ A Kotlin port of the URL value object library https://github.com/krixon/url
 
 ## Gradle
 ```
-Implementation("uk.co.ben_gibson.url")
+implementation("uk.co.ben_gibson:url:0.0.5")
+```
+
+## Maven
+```xml
+<dependency>
+  <groupId>uk.co.ben_gibson</groupId>
+  <artifactId>url</artifactId>
+  <version>0.0.5</version>
+</dependency>
 ```
 
 # Usage
 
+## URL
 ```kotlin
 URL.fromString("https://example.com:8080/foo/bar?limit=10#L1-L10")
 
@@ -33,6 +43,18 @@ URL(
     queryString = QueryString.fromMap(mapOf("order" to listOf("id", "name"))),
     fragment = Fragment.create("L10")
 )
+
+```
+
+## Path
+```kotlin
+val path = Path.create("foo/bar/")
+    .with("/baz/slug/")
+    .withSegment("my slug")
+    .withSegments("that", "is", "awesome")
+
+path.toString() // -> foo/bar/baz/slug/my%20slug/that/is/awesome
+
 ```
 
 # Development
