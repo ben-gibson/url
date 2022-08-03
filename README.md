@@ -15,7 +15,7 @@ A Kotlin port of the URL value object library https://github.com/krixon/url
 
 ## Gradle
 ```
-implementation("uk.co.ben_gibson:url:0.0.6")
+implementation("uk.co.ben_gibson:url:0.0.7")
 ```
 
 ## Maven
@@ -23,7 +23,7 @@ implementation("uk.co.ben_gibson:url:0.0.6")
 <dependency>
   <groupId>uk.co.ben_gibson</groupId>
   <artifactId>url</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
 </dependency>
 ```
 
