@@ -73,7 +73,7 @@ internal class URLTest {
         val url = URL.fromString("https://example.com")
 
         assertThat(url.toString()).isEqualTo("https://example.com")
-        assertThat(url.withPath(Path.create("foo/bar")).toString()).isEqualTo("https://example.com/foo/bar")
+        assertThat(url.withPath(Path("foo/bar")).toString()).isEqualTo("https://example.com/foo/bar")
     }
 
     @Test
@@ -81,7 +81,7 @@ internal class URLTest {
         val url = URL.fromString("https://example.com")
 
         assertThat(url.toString()).isEqualTo("https://example.com")
-        assertThat(url.withQueryString(QueryString.create("foo=bar")).toString()).isEqualTo("https://example.com?foo=bar")
+        assertThat(url.withQueryString(QueryString("foo=bar")).toString()).isEqualTo("https://example.com?foo=bar")
     }
 
     @Test
@@ -89,7 +89,7 @@ internal class URLTest {
         val url = URL.fromString("https://example.com")
 
         assertThat(url.toString()).isEqualTo("https://example.com")
-        assertThat(url.withFragment(Fragment.create("L10-L15")).toString()).isEqualTo("https://example.com#L10-L15")
+        assertThat(url.withFragment(Fragment("L10-L15")).toString()).isEqualTo("https://example.com#L10-L15")
     }
 
     @Test
@@ -97,7 +97,7 @@ internal class URLTest {
         val url = URL.fromString("https://example.com")
 
         assertThat(url.toString()).isEqualTo("https://example.com")
-        assertThat(url.withScheme(Scheme.create("ftp")).toString()).isEqualTo("ftp://example.com")
+        assertThat(url.withScheme(Scheme("ftp")).toString()).isEqualTo("ftp://example.com")
     }
 
     @Test
@@ -105,7 +105,7 @@ internal class URLTest {
         val url = URL.fromString("https://example.com")
 
         assertThat(url.toString()).isEqualTo("https://example.com")
-        assertThat(url.withHost(Host.create("new-example.co.uk")).toString()).isEqualTo("https://new-example.co.uk")
+        assertThat(url.withHost(Host("new-example.co.uk")).toString()).isEqualTo("https://new-example.co.uk")
     }
 
     @Test

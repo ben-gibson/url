@@ -3,6 +3,7 @@
 # URL Changelog
 
 ## [Unreleased]
+- Improve creation API
 
 ## [0.0.5]
 - Improve path API

@@ -11,7 +11,7 @@ java {
 }
 
 group = "uk.co.ben_gibson"
-version = "0.0.5"
+version = "0.0.6"
 
 repositories {
     mavenCentral()

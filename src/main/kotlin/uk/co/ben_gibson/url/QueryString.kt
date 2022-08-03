@@ -9,7 +9,7 @@ data class QueryString private constructor(private val query: String) {
     }
 
     companion object {
-        fun create(value: String) = QueryString(value.trim().trimStart('?'))
+        operator fun invoke(value: String) = QueryString(value.trim().trimStart('?'))
 
         fun fromMap(parameters: Map<String, List<String>>) : QueryString {
             val queryString = parameters.entries

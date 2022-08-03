@@ -14,29 +14,29 @@ internal class QueryStringTest {
     companion object {
         @JvmStatic
         private fun equalityExpectationsProvider() = Stream.of(
-            Arguments.of(QueryString.create("foo=bar"), QueryString.create("foo=bar"), true),
-            Arguments.of(QueryString.create("  foo=bar  "), QueryString.create("foo=bar"), true),
-            Arguments.of(QueryString.create("?foo=bar&bar=baz"), QueryString.create("foo=bar&bar=baz"), true),
-            Arguments.of(QueryString.create("foo=bar"), QueryString.create("foo=baz"), false),
-            Arguments.of(QueryString.create("foobar=bar"), QueryString.create("foo=bar"), false),
+            Arguments.of(QueryString("foo=bar"), QueryString("foo=bar"), true),
+            Arguments.of(QueryString("  foo=bar  "), QueryString("foo=bar"), true),
+            Arguments.of(QueryString("?foo=bar&bar=baz"), QueryString("foo=bar&bar=baz"), true),
+            Arguments.of(QueryString("foo=bar"), QueryString("foo=baz"), false),
+            Arguments.of(QueryString("foobar=bar"), QueryString("foo=bar"), false),
         )
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["foo=a/b/c", "foo=bar&bar=baz"])
     fun acceptsValidQueryStrings(value: String) {
-        assertThat(QueryString.create(value).toString()).isEqualTo(value)
+        assertThat(QueryString(value).toString()).isEqualTo(value)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["?foo=bar&bar=baz", "  ?foo=bar&bar=baz    "])
     fun canBeNormalised(value: String) {
-        assertThat(QueryString.create(value).toString()).isEqualTo("foo=bar&bar=baz")
+        assertThat(QueryString(value).toString()).isEqualTo("foo=bar&bar=baz")
     }
 
     @Test
     fun canCastToMap() {
-        val query = QueryString.create("foo=bar&bar=foo&bar=baz");
+        val query = QueryString("foo=bar&bar=foo&bar=baz");
 
         assertThat(query.toMap()).isEqualTo(mapOf("foo" to listOf("bar"), "bar" to listOf("foo", "baz")))
     }
@@ -51,7 +51,7 @@ internal class QueryStringTest {
     @ParameterizedTest
     @ValueSource(strings = [ "abc" ])
     fun rejectsInvalidQueryString(value: String) {
-        assertThatThrownBy { QueryString.create(value) }
+        assertThatThrownBy { QueryString(value) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("Invalid query string '${value}'")
     }
@@ -64,7 +64,7 @@ internal class QueryStringTest {
 
     @Test
     fun canAddNewParameterValue() {
-        val query = QueryString.create("foo=bar&bar=baz")
+        val query = QueryString("foo=bar&bar=baz")
         val updatedQuery = query.withParameter("baz", "qaz")
 
         assertThat(updatedQuery.toString()).isEqualTo("foo=bar&bar=baz&baz=qaz")
@@ -72,7 +72,7 @@ internal class QueryStringTest {
 
     @Test
     fun canAddExistingParameterValue() {
-        val query = QueryString.create("foo=bar&bar=baz")
+        val query = QueryString("foo=bar&bar=baz")
         val updatedQuery = query.withParameter("foo", "baz")
 
         assertThat(updatedQuery.toString()).isEqualTo("foo=bar&foo=baz&bar=baz")
@@ -80,7 +80,7 @@ internal class QueryStringTest {
 
     @Test
     fun canAddNewParameterValues() {
-        val query = QueryString.create("foo=bar&bar=baz");
+        val query = QueryString("foo=bar&bar=baz");
         val updatedQuery = query.withParameter("baz", listOf("foo", "bar", "baz"))
 
         assertThat(updatedQuery.toString()).isEqualTo("foo=bar&bar=baz&baz=foo&baz=bar&baz=baz")
@@ -88,7 +88,7 @@ internal class QueryStringTest {
 
     @Test
     fun canAddExistingParameterValues() {
-        val query = QueryString.create("foo=bar&bar=baz");
+        val query = QueryString("foo=bar&bar=baz");
         val updatedQuery = query.withParameter("foo", listOf("foo", "baz", "qaz"))
 
         assertThat(updatedQuery.toString()).isEqualTo("foo=bar&foo=foo&foo=baz&foo=qaz&bar=baz")

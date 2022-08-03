@@ -22,13 +22,13 @@ data class URL(
             val credentials = url.userInfo?.split(':')?.let { Credentials(it[0], it.getOrNull(1)) }
 
             return URL(
-                Scheme.create(url.protocol),
-                Host.create(url.host),
+                Scheme(url.protocol),
+                Host(url.host),
                 url.port.takeIf { it > -1 }?.let { Port(it) },
                 credentials,
-                url.path.takeIf { it.isNotEmpty() }?.let { Path.create(it) },
-                url.query?.let { QueryString.create(it) },
-                url.ref?.let { Fragment.create(it) }
+                url.path.takeIf { it.isNotEmpty() }?.let { Path(it) },
+                url.query?.let { QueryString(it) },
+                url.ref?.let { Fragment(it) }
             )
         }
     }

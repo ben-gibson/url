@@ -14,15 +14,15 @@ internal class FragmentTest {
     companion object {
         @JvmStatic
         private fun equalityExpectationsProvider() = Stream.of(
-            Arguments.of(Fragment.create("#bar"), Fragment.create("bar"), true),
-            Arguments.of(Fragment.create("  bar  "), Fragment.create("bar"), true),
-            Arguments.of(Fragment.create("foo"), Fragment.create("bar"), false),
+            Arguments.of(Fragment("#bar"), Fragment("bar"), true),
+            Arguments.of(Fragment("  bar  "), Fragment("bar"), true),
+            Arguments.of(Fragment("foo"), Fragment("bar"), false),
         )
     }
 
     @Test
     fun canCastToString() {
-        val fragment = Fragment.create("bar");
+        val fragment = Fragment("bar");
 
         assertThat(fragment.toString()).isEqualTo("bar")
     }
@@ -30,7 +30,7 @@ internal class FragmentTest {
     @ParameterizedTest
     @ValueSource(strings = ["#bar", "  #bar    "])
     fun canBeNormalised(value: String) {
-        assertThat(Fragment.create(value).toString()).isEqualTo("bar")
+        assertThat(Fragment(value).toString()).isEqualTo("bar")
     }
 
     @ParameterizedTest
@@ -42,7 +42,7 @@ internal class FragmentTest {
     @ParameterizedTest
     @ValueSource(strings = [ "^", "#^", "£", "™" ])
     fun rejectsInvalidFragment(value: String) {
-        Assertions.assertThatThrownBy { QueryString.create(value) }
+        Assertions.assertThatThrownBy { QueryString(value) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("Invalid query string '${value}'")
     }
