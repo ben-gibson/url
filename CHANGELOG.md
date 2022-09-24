@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.8]
 - Allow period character in query string
 
 ## [0.0.7]
