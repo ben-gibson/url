@@ -23,7 +23,7 @@ internal class QueryStringTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["foo=a/b/c", "foo=bar&bar=baz"])
+    @ValueSource(strings = ["foo=a/b/c", "foo=bar&bar=baz", "version=GC9fab9536f99e0734bf4921ce0086c07f8b51a5fd&path=/README.md&line=1&lineEnd=1&lineStartColumn=1&lineEndColumn=1"])
     fun acceptsValidQueryStrings(value: String) {
         assertThat(QueryString(value).toString()).isEqualTo(value)
     }

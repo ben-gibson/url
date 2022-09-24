@@ -3,6 +3,7 @@
 # URL Changelog
 
 ## [Unreleased]
+- Allow period character in query string
 
 ## [0.0.7]
 - Add `Path.fromSegments()` static factory
