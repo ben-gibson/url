@@ -71,6 +71,14 @@ internal class QueryStringTest {
     }
 
     @Test
+    fun doesEscapeParameterValue() {
+        val query = QueryString("foo=bar&bar=baz")
+        val updatedQuery = query.withParameter("path", "foo/bar/baz.java")
+
+        assertThat(updatedQuery.toString()).isEqualTo("foo=bar&bar=baz&path=foo%2Fbar%2Fbaz.java")
+    }
+
+    @Test
     fun canAddExistingParameterValue() {
         val query = QueryString("foo=bar&bar=baz")
         val updatedQuery = query.withParameter("foo", "baz")
