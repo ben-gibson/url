@@ -39,7 +39,7 @@ data class QueryString private constructor(private val query: String) {
 
         val existingValues = parameters.getOrDefault(key, listOf())
 
-        parameters[encode(key)] = existingValues + values.map { encode(it) }
+        parameters[encode(key)] = existingValues + values
 
         return fromMap(parameters)
     }

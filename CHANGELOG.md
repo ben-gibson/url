@@ -3,6 +3,7 @@
 # URL Changelog
 
 ## [Unreleased]
+- Fix double encoding when adding new query string parameter
 
 ## [0.0.8]
 - Allow period character in query string
