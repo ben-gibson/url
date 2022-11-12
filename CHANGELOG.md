@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.9]
 - Fix double encoding when adding new query string parameter
 
 ## [0.0.8]
