@@ -15,6 +15,7 @@ internal class HostTest {
         private fun equalityExpectationsProvider() = Stream.of(
             Arguments.of(Host("www.example.com"), Host("www.example.com"), true),
             Arguments.of(Host("www.example.com/"), Host("www.example.com"), true),
+            Arguments.of(Host("example"), Host("example"), true),
             Arguments.of(Host("example.com"), Host("example.com"), true),
             Arguments.of(Host("EXAMPLE.com"), Host("EXAMPLE.com"), true),
             Arguments.of(Host("ExAmPle.CoM"), Host("example.com"), true),
@@ -25,21 +26,15 @@ internal class HostTest {
     @Test
     fun canCastToString() {
         val host = Host("www.example.com");
+        val unqualifiedHost = Host("example");
 
         assertThat(host.toString()).isEqualTo("www.example.com")
+        assertThat(unqualifiedHost.toString()).isEqualTo("example")
     }
 
     @Test
     fun canBeNormalised() {
         assertThat(Host("WwW.ExAmPlE.CoM/").toString()).isEqualTo("www.example.com")
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = [ "foo" ])
-    fun rejectsInvalidHost(value: String) {
-        assertThatThrownBy { Host(value) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("Invalid host '${value}'")
     }
 
     @ParameterizedTest
