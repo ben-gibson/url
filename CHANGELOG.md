@@ -3,6 +3,8 @@
 # URL Changelog
 
 ## [Unreleased]
+
+## [0.0.10]
 - Fix validation for unqualified host names
 
 ## [0.0.9]
