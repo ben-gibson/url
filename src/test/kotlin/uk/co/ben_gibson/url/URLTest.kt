@@ -13,6 +13,13 @@ internal class URLTest {
     }
 
     @Test
+    fun canCreateFromStringWithUnqualifiedHost() {
+        val url = URL.fromString("https://example:8080/foo/bar?limit=10#L1-L10")
+
+        assertThat(url.toString()).isEqualTo("https://example:8080/foo/bar?limit=10#L1-L10")
+    }
+
+    @Test
     fun canConvertToHttps() {
         val url = URL.fromString("http://example.com")
 

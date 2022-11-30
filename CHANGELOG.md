@@ -3,6 +3,7 @@
 # URL Changelog
 
 ## [Unreleased]
+- Fix validation for unqualified host names
 
 ## [0.0.9]
 - Fix double encoding when adding new query string parameter
