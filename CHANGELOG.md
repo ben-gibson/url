@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [0.0.11]
+- Don't change host casing.
+
 ## [0.0.10]
 - Fix validation for unqualified host names
 

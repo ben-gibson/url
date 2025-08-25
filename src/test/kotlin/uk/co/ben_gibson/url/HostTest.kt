@@ -32,11 +32,6 @@ internal class HostTest {
         assertThat(unqualifiedHost.toString()).isEqualTo("example")
     }
 
-    @Test
-    fun canBeNormalised() {
-        assertThat(Host("WwW.ExAmPlE.CoM/").toString()).isEqualTo("www.example.com")
-    }
-
     @ParameterizedTest
     @MethodSource("equalityExpectationsProvider")
     fun canDetermineIfEqual(host: Host, other: Host, expected: Boolean) {
